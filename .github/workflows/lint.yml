@@ -27,12 +27,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
       - name: Install Python dependencies
         run: >
           python -m pip install -U
           -e .
-          -r dev-requirements.txt
+          --group lint
       - name: ruff check
         run: >
           python -m ruff check .
@@ -48,13 +48,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
       - name: Install Python dependencies
         run: >
           python -m pip install -U
           -e .
-          -r dev-requirements.txt
-          -r docs-requirements.txt
+          --group typing
       - name: mypy
         run: |
           python -m mypy --no-incremental
